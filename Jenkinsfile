@@ -1,7 +1,8 @@
 node {
     checkout scm
-    def nodeHome = tool name: 'node-6.9.1', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
-    env.PATH = "${nodeHome}/bin:${env.PATH}"
+    def nodeHome = tool 'nodejs5'
+    env.PATH="${env.PATH}:${nodeHome}/bin"
+    ...
     sh 'npm install'
     stage('Build') {
         echo 'Building...'
