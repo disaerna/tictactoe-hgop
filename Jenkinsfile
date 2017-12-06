@@ -6,7 +6,7 @@ node {
     }
     stage('Test') {
         echo 'Testing..'
-        npm run test
+        npm test
     }
     stage('Deploy') {
         echo 'Deploying....'
