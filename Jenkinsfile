@@ -1,13 +1,10 @@
 node {
     checkout scm
-    env.NODEJS_HOME = "${tool 'Node 6.9.1'}"
-    // on linux / mac
-    env.PATH="${env.NODEJS_HOME}/bin:${env.PATH}"
-    // on windows
-    sh 'npm --version'
+    def nodeHome = tool name: 'node-6.9.1', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
+    env.PATH = "${nodeHome}/bin:${env.PATH}"
+    sh 'npm install'
     stage('Build') {
         echo 'Building...'
-        sh npm install
     }
     stage('Test') {
         echo 'Testing..'
