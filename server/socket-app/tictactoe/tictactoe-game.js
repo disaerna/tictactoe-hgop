@@ -1,3 +1,5 @@
+//import { applyEach } from "../../../../../../../../Library/Caches/typescript/2.6/node_modules/@types/async";
+
 
 module.exports = function(injected){
     let TictactoeState = injected('TictactoeState');
@@ -10,8 +12,6 @@ module.exports = function(injected){
             executeCommand: function(cmd, eventHandler){
                 function applyEvents(events, moreEvents){
                     gameState.processEvents(events);
-
-                    // Check here for game state that may result in additional events
                     eventHandler(events);
                 }
 
@@ -58,7 +58,69 @@ module.exports = function(injected){
                         }]);
                     },
                     "PlaceMove": function(cmd){
-
+                        if(gameState.illegalMove(cmd.y, cmd.x)){
+                            applyEvents([{
+                                gameId: cmd.gameId,
+                                type: "IllegalMove",
+                                user: cmd.user,
+                                name: cmd.name,
+                                timeStamp: cmd.timeStamp,
+                                side: cmd.side,
+                                y: cmd.y,
+                                x: cmd.x
+                            }]);
+                            return;
+                        }
+                        if(gameState.wrongPlayer(cmd.side)){
+                            applyEvents([{
+                                gameId: cmd.gameId,
+                                type: "NotYourMove",
+                                user: cmd.user,
+                                name: cmd.name,
+                                timeStamp: cmd.timeStamp,
+                                side: cmd.side,
+                                y: cmd.y,
+                                x: cmd.x
+                            }]);
+                            return;
+                        }
+                        if(gameState.gameWon(cmd.y, cmd.x, cmd.side)){
+                            applyEvents([{
+                                gameId: cmd.gameId,
+                                type: "GameWon",
+                                user: cmd.user,
+                                name: cmd.name,
+                                timeStamp: cmd.timeStamp,
+                                side: cmd.side,
+                                y: cmd.y,
+                                x: cmd.x
+                            }]);
+                            return;
+                        }
+                        if(gameState.draw()){
+                            applyEvents([{
+                                gameId: cmd.gameId,
+                                type: "Draw",
+                                user: cmd.user,
+                                name: cmd.name,
+                                timeStamp: cmd.timeStamp,
+                                side: cmd.side,
+                                y: cmd.y,
+                                x: cmd.x
+                            }]);
+                            return;
+                        }
+                        applyEvents([{
+                            gameId: cmd.gameId,
+                            type: "MovePlaced",
+                            user: cmd.user,
+                            name: cmd.name,
+                            timeStamp: cmd.timeStamp,
+                            side: cmd.side,
+                            y: cmd.y,
+                            x: cmd.x
+                        }]);
+                        
 
                         // Check here for conditions which prevent command from altering state
 
