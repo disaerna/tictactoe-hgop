@@ -9,6 +9,7 @@ node {
     }
     stage('Test') {
         echo 'Testing..'
+        npm run test
     }
     stage('Deploy') {
         echo 'Deploying....'
