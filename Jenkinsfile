@@ -6,7 +6,7 @@ node {
         env.PATH = "${nodeHome}/bin:${env.PATH}"
         checkout scm
         sh 'npm install'
-        sh 'npm install --prefix ./client'
+        sh 'cd client && npm install'
     }
     stage('Build'){
         echo 'Building'
