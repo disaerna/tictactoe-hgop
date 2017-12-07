@@ -19,6 +19,6 @@ node {
     }
     stage('Deploy') {
         echo 'Deploying....'
-        sh './provisioning/create-aws-docker-host-instance.sh'
+        sh 'cd provisioning && ./create-aws-docker-host-instance.sh'
     }
 } 
