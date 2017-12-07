@@ -20,5 +20,6 @@ node {
     stage('Deploy') {
         echo 'Deploying....'
         sh 'cd provisioning && ./create-aws-docker-host-instance.sh'
+        sh 'cd provisioning && ./deploy-on-instance $(git rev-parse HEAD) $(cat ./ec2_instance/instance-id.txt)'
     }
 } 

@@ -5,7 +5,6 @@ set -e
 GIT_COMMIT=$1
 INSTANCE_ID=$2
 
-echo 
 INSTANCE_PUBLIC_NAME=$(cat ./ec2_instance/instance-public-name.txt)
 SECURITY_GROUP_NAME=$(cat ./ec2_instance/security-group-name.txt)
 
