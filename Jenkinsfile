@@ -19,7 +19,8 @@ node {
     }
     stage('Deploy') {
         echo 'Deploying....'
-        sh 'cd provisioning && ./create-aws-docker-host-instance.sh'
-        sh 'cd provisioning && ./deploy-on-instance.sh'
+        //sh 'cd provisioning && ./create-aws-docker-host-instance.sh'
+        //sh 'cd provisioning && ./deploy-on-instance.sh'
+        sh './provision-new-environment.sh'
     }
 } 
