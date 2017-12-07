@@ -6,6 +6,10 @@ INSTANCE_DIR="ec2_instance"
 
 export AMI_IMAGE_ID="ami-1a962263"
 
+if [ -d "${INSTANCE_DIR}" ]; then  
+    exit
+fi
+
 #create ec2_instance dir
 [ -d "${INSTANCE_DIR}" ] || mkdir ${INSTANCE_DIR}
 
