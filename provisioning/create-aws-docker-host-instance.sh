@@ -6,7 +6,11 @@ INSTANCE_DIR="ec2_instance"
 
 export AMI_IMAGE_ID="ami-1a962263"
 
-echo No instance information present, continuing.
+if [ -d "${INSTANCE_DIR}" ]; then
+    exit
+fi
+
+#create ec2_instance dir
 [ -d "${INSTANCE_DIR}" ] || mkdir ${INSTANCE_DIR}
 
 USERNAME=$(aws iam get-user --query 'User.UserName' --output text)
@@ -35,7 +39,6 @@ fi
 MY_PUBLIC_IP=$(curl http://checkip.amazonaws.com)
 if [ ! -e ./ec2_instance/instance-id.txt ]; then
     echo Create ec2 instance on security group ${SECURITY_GROUP_ID} ${AMI_IMAGE_ID}
-    INSTANCE_INIT_SCRIPT=docker-instance-init.sh
     INSTANCE_ID=$(aws ec2 run-instances  --user-data file://docker-instance-init.sh --image-id ${AMI_IMAGE_ID} --security-group-ids ${SECURITY_GROUP_ID} --count 1 --instance-type t2.micro --key-name ${SECURITY_GROUP_NAME} --query 'Instances[0].InstanceId'  --output=text)
     echo ${INSTANCE_ID} > ./ec2_instance/instance-id.txt
 
