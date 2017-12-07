@@ -1,0 +1,4 @@
+ef segmentation fault error þegar verið er að runna npm install inní client þarf að fara manual inní ec2 vélina og fara í client möppu og npm installa manually
+
+það þarf að logga inn manually docker login inní ec2->jenkins 
+
