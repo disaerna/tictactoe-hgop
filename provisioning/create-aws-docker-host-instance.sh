@@ -37,6 +37,7 @@ else
 fi
 
 MY_PUBLIC_IP=$(curl http://checkip.amazonaws.com)
+MY_PRIVATE_IP=$(hostname -I | cut -d' ' -f1)
 if [ ! -e ./ec2_instance/instance-id.txt ]; then
     echo Create ec2 instance on security group ${SECURITY_GROUP_ID} ${AMI_IMAGE_ID}
     INSTANCE_ID=$(aws ec2 run-instances  --user-data file://docker-instance-init.sh --image-id ${AMI_IMAGE_ID} --security-group-ids ${SECURITY_GROUP_ID} --count 1 --instance-type t2.micro --key-name ${SECURITY_GROUP_NAME} --query 'Instances[0].InstanceId'  --output=text)
@@ -55,10 +56,11 @@ fi
 
 
 MY_CIDR=${MY_PUBLIC_IP}/32
+MY_PRIVATE_CIDR=${MY_PRIVATE_IP}/32
 
 echo Using CIDR ${MY_CIDR} for access restrictions.
 
 set +e
-aws ec2 authorize-security-group-ingress --group-name ${SECURITY_GROUP_NAME} --protocol tcp --port 22 --cidr ${MY_CIDR}
+aws ec2 authorize-security-group-ingress --group-name ${SECURITY_GROUP_NAME} --protocol tcp --port 22 --cidr ${MY_PRIVATE_CIDR}
 aws ec2 authorize-security-group-ingress --group-name ${SECURITY_GROUP_NAME} --protocol tcp --port 80 --cidr ${MY_CIDR}
 
