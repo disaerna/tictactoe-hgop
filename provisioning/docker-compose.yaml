@@ -5,7 +5,8 @@ services:
       - 'POSTGRES_HOST=postgres'
       - 'POSTGRES_PORT=5432'
       - 'PORT=8080'
-    image: 'asdis15/tictactoe:${GIT_COMMIT}'
+    image: 'asdis15/tictactoe:${TAG}'
+    env_file: .env
     ports:
       - '8080:8080'
     links:

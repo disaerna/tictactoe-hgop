@@ -7,6 +7,7 @@ then
     export GIT_COMMIT=$(git rev-parse HEAD)
 fi
 
+echo 
 INSTANCE_ID=$(cat ./ec2_instance/instance-id.txt)
 INSTANCE_PUBLIC_NAME=$(cat ./ec2_instance/instance-public-name.txt)
 SECURITY_GROUP_NAME=$(cat ./ec2_instance/security-group-name.txt)
