@@ -11,6 +11,7 @@ node {
     stage('Build'){
         echo 'Building'
         sh  'npm run build'
+        sh 'npm run dockerbuild'
     }
     stage('Test') {
         echo 'Testing..'
