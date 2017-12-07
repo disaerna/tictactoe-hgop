@@ -12,10 +12,11 @@ echo Deploy revision ${GIT_COMMIT} to http://${INSTANCE_PUBLIC_NAME}
 
 echo SCP
 
+#wait for succesfull connection to instance
+echo "Waiting for connection to instance"
 status='unknown'
 while [ ! "${status}" == "ok" ]
 do
-   echo Checking status of host, currently ${status}
    status=$(ssh -i "./ec2_instance/${SECURITY_GROUP_NAME}.pem"  -o StrictHostKeyChecking=no -o BatchMode=yes -o ConnectTimeout=5 ec2-user@${INSTANCE_PUBLIC_NAME} echo ok 2>&1)
    sleep 2
 done
