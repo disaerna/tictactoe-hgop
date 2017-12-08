@@ -2,7 +2,7 @@
 set -e
 
 echo "Check for instance information..."
-INSTANCE_DIR="/ec2_instance"
+INSTANCE_DIR=~/ec2_instance
 
 export AMI_IMAGE_ID="ami-1a962263"
 
