@@ -1,4 +1,3 @@
-//import { applyEach } from "../../../../../../../../Library/Caches/typescript/2.6/node_modules/@types/async";
 
 
 module.exports = function(injected){
