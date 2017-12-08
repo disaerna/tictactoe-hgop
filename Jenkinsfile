@@ -9,7 +9,7 @@ node {
         sh 'cd client && npm install'
     }
     stage('Build'){
-        echo 'Building app and docker imageeee'
+        echo 'Building app and docker image'
         //sh  'npm run build'
         sh 'npm run dockerbuild'
     }
