@@ -8,7 +8,7 @@ INSTANCE_ID=$2
 INSTANCE_PUBLIC_NAME=$(cat ~/ec2_instance/instance-public-name.txt)
 SECURITY_GROUP_NAME=$(cat ~/ec2_instance/security-group-name.txt)
 
-echo Deploy revision ${GIT_COMMIT} to http://${INSTANCE_PUBLIC_NAME}:8080
+echo Deploy revision ${GIT_COMMIT} to http://${INSTANCE_PUBLIC_NAME}
 
 echo SCP
 
@@ -17,7 +17,7 @@ echo "Waiting for connection to instance"
 status='unknown'
 while [ ! "${status}" == "ok" ]
 do
-   status=$(ssh -i "~/ec2_instance/${SECURITY_GROUP_NAME}.pem"  -o StrictHostKeyChecking=no -o BatchMode=yes -o ConnectTimeout=5 ec2-user@${INSTANCE_PUBLIC_NAME} echo ok 2>&1)
+   status=$(ssh -i "/var/lib/jenkins/ec2_instance/${SECURITY_GROUP_NAME}.pem"  -o StrictHostKeyChecking=no -o BatchMode=yes -o ConnectTimeout=5 ec2-user@${INSTANCE_PUBLIC_NAME} echo ok 2>&1)
    sleep 2
 done
 
