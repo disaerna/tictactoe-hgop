@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -vx
 set -e
 
 echo "Check for instance information..."
