@@ -969,7 +969,7 @@ describe('place move command', function() {
                 };
                 then = [
                     {
-                        type: "TestingIfJenkinsFails!",
+                        type: "GameWon",
                         user: {
                             userName: "TheGuy"
                         },
