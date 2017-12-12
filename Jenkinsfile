@@ -13,14 +13,21 @@ node {
         //sh  'npm run build'
         sh 'npm run dockerbuild'
     }
-    stage('Test') {
+    stage('Unit Test') {
         echo 'Testing unit test..'
-        sh 'npm run test'
-        //echo 'Testing api test..'
-        //sh 'npm run apitest'        
-        //echo 'Testing load test..'
-        //sh 'npm run loadtest'
+        sh 'npm run test'        
     }
+
+    stage('API Test') {
+        echo 'Testing api test..'
+        sh 'npm run apitest'    
+    }
+
+    stage('Load Test') {
+        echo 'Testing load test..'
+        sh 'npm run loadtest'
+    }
+
     stage('Deploy') {
         echo 'Deploying....'
         sh 'cd provisioning && ./create-aws-docker-host-instance.sh'
