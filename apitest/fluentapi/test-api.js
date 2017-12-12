@@ -40,7 +40,7 @@ module.exports=function(injected){
             // Put in log statements that enable you to trace the messages going back and forth.
             // Result is a list of modules/functions in this source code which get invoked when cleanDatabase is called.
             cleanDatabase:()=>{
-                console.log("CLEANING DB");
+                console.log("test-api CLEANING DB");
                 let cmdId = commandId++;
                 routingContext.commandRouter.routeMessage({commandId:cmdId, type:"cleanDatabase"});
                 return me;

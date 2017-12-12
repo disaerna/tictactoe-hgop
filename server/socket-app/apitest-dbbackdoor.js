@@ -16,6 +16,7 @@ module.exports=function(injected){
 
                 let statement = 'DELETE FROM eventlog';
                 let statementParams = [];
+                console.log("apitest-dbbackdoor CLEAN DB - Delete from eventlog");                                
                 console.warn(statement);
                 connection.query(statement,statementParams, function(err, result) {
                     //call `done()` to release the client back to the pool
@@ -30,6 +31,7 @@ module.exports=function(injected){
 
                 statement = "DELETE FROM commandlog";
                 console.warn(statement);
+                console.log("apitest-dbbackdoor CLEAN DB - Delete from commandlog");                                                
                 connection.query(statement,statementParams, function(err, result) {
                     //call `done()` to release the client back to the pool
                     done();

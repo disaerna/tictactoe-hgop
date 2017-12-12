@@ -36,6 +36,7 @@ describe('Tictactoe load test', function () {
         let testapi = testAPI();
 
         testapi.waitForCleanDatabase().cleanDatabase().then(() => {
+            console.log("loadTest CLEAN DB")
             testapi.disconnect();
             done();
         });

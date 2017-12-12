@@ -24,6 +24,7 @@ describe('User chat load test', function(){
         jasmine.DEFAULT_TIMEOUT_INTERVAL = timelimit;
         let testapi = testAPI();
         testapi.waitForCleanDatabase().cleanDatabase().then(()=>{
+            console.log("chat.loadtest CLEAN DB")
             testapi.disconnect();
             done();
         });

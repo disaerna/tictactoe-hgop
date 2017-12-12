@@ -21,6 +21,8 @@ describe('User chat API', function(){
         testapi.waitForCleanDatabase(
             function(){
 //                console.debug("Database has been cleared for testing");
+                console.log("chat.spec CLEAN DB");
+
             }
         ).cleanDatabase().then(()=>{
             testapi.disconnect();
@@ -32,7 +34,6 @@ describe('User chat API', function(){
     afterEach(function(){
         user.disconnect();
     });
-
     it('should get user session information on connect',function(done){
         // There is a weak race condition here. Why ?
         user.expectUserAck().then(done);

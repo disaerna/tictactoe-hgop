@@ -14,8 +14,12 @@ node {
         sh 'npm run dockerbuild'
     }
     stage('Test') {
-        echo 'Testing..'
+        echo 'Testing unit test..'
         sh 'npm run test'
+        echo 'Testing api test..'
+        sh 'npm run apitest'        
+        echo 'Testing load test..'
+        sh 'npm run loadtest'
     }
     stage('Deploy') {
         echo 'Deploying....'
