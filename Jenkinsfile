@@ -21,7 +21,7 @@ node {
     stage('API Test') {
         echo 'Testing api test..'
         sh 'npm run startpostgres'
-        sh 'npm run startserver:dev && npm run apitest && kill $!'
+        sh 'npm run startserver:dev & npm run apitest && kill $! '
     }
 /*
     stage('Load Test') {
