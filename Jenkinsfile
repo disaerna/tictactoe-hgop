@@ -20,9 +20,10 @@ node {
 
     stage('API Test') {
         echo 'Testing api test..'
-        sh 'npm run apitest'    
+        sh 'npm run startpostgres'
+        sh 'npm run startserver:dev && npm run apitest && kill $!'
     }
-
+/*
     stage('Load Test') {
         echo 'Testing load test..'
         sh 'npm run loadtest'
@@ -33,5 +34,5 @@ node {
         sh 'cd provisioning && ./create-aws-docker-host-instance.sh'
         sh 'cd provisioning && ./deploy-on-instance.sh'
        // sh 'cd provisioning && ./provision-new-environment.sh'
-    }
+    }*/
 } 
